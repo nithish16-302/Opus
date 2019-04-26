@@ -1,0 +1,192 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>User Dashboard!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Material Kit CSS -->
+    <link href="{% static 'workerapp/dashboardAssets/css/material-dashboard.css'%}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" integrity="sha256-y/nn1YJAT/GwVsHZTooNErdWLjZvqMFJxNRLvigMD4I=" crossorigin="anonymous" />
+    <link href="{% static 'workerapp/dashboardAssets/css/bootstrap-datetimepicker.css'%}" rel="stylesheet" />
+    <link href="{% static 'workerapp/dashboardAssets/css/bootstrap-datetimepicker.min.css'%}" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{% static 'workerapp/loginAssets/css/util.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'workerapp/loginAssets/css/main.css'%}">
+</head>
+
+<body>
+    <div class="wrapper ">
+        <div class="sidebar" data-color="green" data-background-color="white">
+            <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
+            <div class="logo">
+                <a href="" class="simple-text logo-mini">
+
+                </a>
+                <a href="" class="simple-text logo-normal">
+                    {{ user }}
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item active  ">
+                        <a class="nav-link" href="#0">
+                            <i class="material-icons">dashboard</i>
+                            <p style="color:white">Dashboard</p>
+                        </a>
+                    </li>
+                    <!-- your sidebar here -->
+                    <li class="nav-item active  ">
+                        <a class="nav-link" href="#0">
+                            <i class="material-icons">Profile</i>
+                            <p style="color:white">Profile</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="nav-item active  ">
+                        <a class="nav-link" href="{% url 'user_logout_view'%}">
+                            <i class="material-icons">Logout</i>
+                            <p style="color:white">Logout</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="#pablo">Dashboard</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <i class="material-icons">notifications</i> Notifications
+                                </a>
+                            </li>
+                            <!-- your navbar here -->
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="col-md-12">
+                        <button id="add" class="btn btn-success">Add Request</button>
+                    </div>
+                    <div class="card" id="requestdiv" style="display:none">
+                        <div class="card-body">
+                           <form class="login100-form validate-form" action="{% url 'requestwork'%}" method="get">
+                               <div class="wrap-input100 validate-input m-b-23">
+                                    <span class="label-input100">Whom do you want?</span>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="purpose" name="prof" >
+                                      <option value="dtp">Data Typing</option>
+                                      <option value="objdel">Object Delivery</option>
+                                      <option value="dailywork">Daily Worker</option>
+                                      <option value="electrician">Electrician</option>
+                                      <option value="Plumber">Plumber</option>
+                                    </select>
+                               </div>
+
+                                       <div class="wrap-input100 validate-input m-b-23">
+                                            <span class="label-input100">Select Date and Time:</span>
+	                                        <input class="input100" type="datetime-local" name="datetime"/>
+                                       </div>
+
+                               <div class="wrap-input100 validate-input m-b-23" data-validate="Email Id">
+                                    <span class="label-input100">Address</span>
+                                    <textarea class="input100" name="address" placeholder="Address here.."></textarea>
+                                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                                </div>
+                                <div class="wrap-input100 validate-input m-b-23">
+                                    <span class="label-input100">Pin Code</span>
+                                    <input class="input100" type="text" name="pincode" placeholder="Pin Code">
+                                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                               </div>
+
+                               <div class="container-login100-form-btn">
+
+
+                            <button class="btn btn-success" type="submit" align="right">
+                               Request
+                            </button>
+
+                    </div>
+                           </form>
+                        </div>
+                    </div>
+                    {% if worker != 'None'%}
+                    <div class="card" id="workerdiv" style="display:block">
+                        <div class="card-body">
+                            <span class="label-input100">Worker:</span>
+                            <span class="label label-default">{{worker.user}}</span>
+                        </div>
+                    </div>
+                    {%else%}
+                     <div class="card" id="workerdiv2" style="display:block">
+                        <div class="card-body">
+                            <span class="label-input100">---Your Bookings Here---</span>
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+            <footer class="footer">
+
+            </footer>
+        </div>
+    </div>
+        <script src="{% static 'workerapp/loginAssets/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+
+<SCRIPT type="javascript">
+	$('#purpose').on('change', function() {
+          $("#hiddenDiv").css('display':'block');
+     });
+
+</SCRIPT>
+
+<!-- jquery JS -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap js -->
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+
+<script>
+	// Default date and time picker
+	//$('#datetimepicker-default').datetimepicker();
+	$('#add').click(function(){
+        $('#requestdiv').toggle();
+	}
+
+	);
+	$( "#requestdiv" ).load(function() {
+        $('#requestdiv').hide();
+    });
+</script>
+</body>
+
+</html>
